@@ -26,7 +26,6 @@
                               </div>
                             </div>
                           </div>
-
                         <p class="text-muted font-13" style="padding: 10px;text-align: center;">
                             <a href="{{url('/')}}/installtion/upload-sql" class="btn btn-success">Import SQL</a>
                         </p>
