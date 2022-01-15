@@ -6,7 +6,7 @@
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
                     <a href="{{ route('dashboard') }}">
-                        <x-application-logo class="block h-10 w-auto fill-current text-gray-600" />
+                        <x-d-small-logo class="block h-10 w-auto fill-current text-gray-600" />
                     </a>
                 </div>
 
@@ -15,9 +15,44 @@
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('dashboard')">
-                        {{ __('Ticket') }}
-                    </x-nav-link>
+                    <x-nav-link-parent :href="'#'" :active="request()->routeIs('padron.*')">
+                        <x-slot name="name">Tickets</x-slot>
+                        <x-slot name="children">
+                            <a href="#">Opened Tickets</a>
+                            <span class="separator"></span>
+                            <a href="#">Reopened Tickets</a>
+                            <span class="separator"></span>
+                            <a href="#">Closed & Resolved Tickets</a>
+                            <span class="separator"></span>
+                            <a href="#">Closed & Unresolved Tickets</a>
+                        </x-slot>
+                    </x-nav-link-parent>
+
+                    <x-nav-link-parent :href="'#'" :active="request()->routeIs('padron.*')">
+                        <x-slot name="name">Users</x-slot>
+                        <x-slot name="children">
+                            <a href="#">Customers</a>
+                            <span class="separator"></span>
+                            <a href="#">Employees</a>
+                            <span class="separator"></span>
+                            <a href="#">Admins</a>
+                        </x-slot>
+                    </x-nav-link-parent>
+
+                    <x-nav-link-parent :href="'#'" :active="request()->routeIs('padron.*')">
+                        <x-slot name="name">Settings</x-slot>
+                        <x-slot name="children">
+                            <a href="#">Category Setting</a>
+                            <span class="separator"></span>
+                            <a href="#">Priority Setting</a>
+                            <span class="separator"></span>
+                            <a href="#">Organization Setting</a>
+                            <span class="separator"></span>
+                            <a href="#">Mail Setting</a>
+                            <span class="separator"></span>
+                            <a href="#">Role Setting</a>
+                        </x-slot>
+                    </x-nav-link-parent>
                 </div>
             </div>
 
@@ -69,6 +104,21 @@
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
+
+            <x-responsive-nav-link :href="route('ticket')" :active="request()->routeIs('ticket')">
+                {{ __('Ticket') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link-parent :href="'#'" :active="request()->routeIs('padron.*')">
+                <x-slot name="name">Padrón</x-slot>
+                <x-slot name="children">
+                    <a href="#">Buscador</a>
+                    <span class="separator"></span>
+                    <a href="#">Centros de votacion</a>
+                    <a href="#">Juntas</a>
+                    <span class="separator"></span>
+                    <a href="#">Cartografia</a>
+                </x-slot>
+            </x-responsive-nav-link-parent>
         </div>
 
         <!-- Responsive Settings Options -->
