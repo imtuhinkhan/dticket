@@ -15,6 +15,7 @@
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
+                    @hasanyrole('admin|employee')
                     <x-nav-link-parent :href="'#'" :active="request()->routeIs('padron.*')">
                         <x-slot name="name">Tickets</x-slot>
                         <x-slot name="children">
@@ -27,7 +28,8 @@
                             <a href="#">Closed & Unresolved Tickets</a>
                         </x-slot>
                     </x-nav-link-parent>
-
+                    @endhasanyrole
+                    @role('admin')
                     <x-nav-link-parent :href="'#'" :active="request()->routeIs('padron.*')">
                         <x-slot name="name">Users</x-slot>
                         <x-slot name="children">
@@ -42,17 +44,16 @@
                     <x-nav-link-parent :href="'#'" :active="request()->routeIs('padron.*')">
                         <x-slot name="name">Settings</x-slot>
                         <x-slot name="children">
-                            <a href="#">Category Setting</a>
+                            <a href="/category">Category Setting</a>
                             <span class="separator"></span>
                             <a href="#">Priority Setting</a>
                             <span class="separator"></span>
                             <a href="#">Organization Setting</a>
                             <span class="separator"></span>
                             <a href="#">Mail Setting</a>
-                            <span class="separator"></span>
-                            <a href="#">Role Setting</a>
                         </x-slot>
                     </x-nav-link-parent>
+                    @endhasrole
                 </div>
             </div>
 

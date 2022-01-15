@@ -1,7 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\SettingController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,10 +18,12 @@ Route::get('/', function () {
     return view('auth.login');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth'])->name('dashboard');
 
+//category
+Route::get('/category', [SettingController::class, 'categoryList'])->middleware(['auth'])->name('category');
+Route::get('/category/new', [SettingController::class, 'categoryAddForm'])->middleware(['auth'])->name('category-add');
+Route::post('/category/save', [SettingController::class, 'categorySave'])->middleware(['auth']);
 
 Route::get('/ticket', function () {
     return view('ticket');
