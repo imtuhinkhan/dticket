@@ -16,7 +16,7 @@
                         {{ __('Dashboard') }}
                     </x-nav-link>
                     @hasanyrole('admin|employee')
-                    <x-nav-link-parent :href="'#'" :active="request()->routeIs('padron.*')">
+                    <x-nav-link-parent :href="'#'" :active="request()->routeIs('ticket/*')">
                         <x-slot name="name">Tickets</x-slot>
                         <x-slot name="children">
                             <a href="#">Opened Tickets</a>
@@ -30,7 +30,7 @@
                     </x-nav-link-parent>
                     @endhasanyrole
                     @role('admin')
-                    <x-nav-link-parent :href="'#'" :active="request()->routeIs('padron.*')">
+                    <x-nav-link-parent :href="'#'" :active="request()->routeIs('user.*')">
                         <x-slot name="name">Users</x-slot>
                         <x-slot name="children">
                             <a href="#">Customers</a>
@@ -41,12 +41,12 @@
                         </x-slot>
                     </x-nav-link-parent>
 
-                    <x-nav-link-parent :href="'#'" :active="request()->routeIs('padron.*')">
-                        <x-slot name="name">Settings</x-slot>
+                    <x-nav-link-parent :href="'#'" :active="request()->is('setting/*')">
+                        <x-slot name="name">Settings @php if(!request()->is('setting/*')) print_r(123) @endphp</x-slot>
                         <x-slot name="children">
-                            <a href="/category">Category Setting</a>
+                            <a href="/setting/category">Category Setting</a>
                             <span class="separator"></span>
-                            <a href="#">Priority Setting</a>
+                            <a href="/setting/priority">Priority Setting</a>
                             <span class="separator"></span>
                             <a href="#">Organization Setting</a>
                             <span class="separator"></span>
@@ -105,21 +105,45 @@
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
-
-            <x-responsive-nav-link :href="route('ticket')" :active="request()->routeIs('ticket')">
-                {{ __('Ticket') }}
-            </x-responsive-nav-link>
-            <x-responsive-nav-link-parent :href="'#'" :active="request()->routeIs('padron.*')">
-                <x-slot name="name">Padrón</x-slot>
+            @hasanyrole('admin|employee')
+            <x-nav-link-parent :href="'#'" :active="request()->routeIs('padron.*')">
+                <x-slot name="name">Tickets</x-slot>
                 <x-slot name="children">
-                    <a href="#">Buscador</a>
+                    <a href="#">Opened Tickets</a>
                     <span class="separator"></span>
-                    <a href="#">Centros de votacion</a>
-                    <a href="#">Juntas</a>
+                    <a href="#">Reopened Tickets</a>
                     <span class="separator"></span>
-                    <a href="#">Cartografia</a>
+                    <a href="#">Closed & Resolved Tickets</a>
+                    <span class="separator"></span>
+                    <a href="#">Closed & Unresolved Tickets</a>
                 </x-slot>
-            </x-responsive-nav-link-parent>
+            </x-nav-link-parent>
+            @endhasanyrole
+            @role('admin')
+            <x-nav-link-parent :href="'#'" :active="request()->routeIs('padron.*')">
+                <x-slot name="name">Users</x-slot>
+                <x-slot name="children">
+                    <a href="#">Customers</a>
+                    <span class="separator"></span>
+                    <a href="#">Employees</a>
+                    <span class="separator"></span>
+                    <a href="#">Admins</a>
+                </x-slot>
+            </x-nav-link-parent>
+
+            <x-nav-link-parent :href="'#'" :active="request()->routeIs('setting.*')">
+                <x-slot name="name">Settings</x-slot>
+                <x-slot name="children">
+                    <a href="/setting/category">Category Setting</a>
+                    <span class="separator"></span>
+                    <a href="/setting/priority">Priority Setting</a>
+                    <span class="separator"></span>
+                    <a href="#">Organization Setting</a>
+                    <span class="separator"></span>
+                    <a href="#">Mail Setting</a>
+                </x-slot>
+            </x-nav-link-parent>
+            @endhasrole
         </div>
 
         <!-- Responsive Settings Options -->
