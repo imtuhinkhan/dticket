@@ -24,6 +24,8 @@ Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['au
 Route::get('/category', [SettingController::class, 'categoryList'])->middleware(['auth'])->name('category');
 Route::get('/category/new', [SettingController::class, 'categoryAddForm'])->middleware(['auth'])->name('category-add');
 Route::post('/category/save', [SettingController::class, 'categorySave'])->middleware(['auth']);
+Route::get('/category/{id}/edit', [SettingController::class, 'categoryEdit'])->middleware(['auth']);
+Route::get('/category/{id}/delete', [SettingController::class, 'categoryDelete'])->middleware(['auth']);
 
 Route::get('/ticket', function () {
     return view('ticket');

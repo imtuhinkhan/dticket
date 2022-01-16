@@ -25,7 +25,7 @@
                     </div>
                     <div class="row">
                         <div class="col-12">
-                            <x-d-data-table :header="'Latest Tickets'"/>
+                            {{-- <x-d-data-table :header="'Latest Tickets'"/> --}}
                         </div>
                     </div>
                 </div>

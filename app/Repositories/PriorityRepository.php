@@ -2,17 +2,17 @@
 namespace App\Repositories;
 use Illuminate\Http\Request;
 use App\Interfaces\CrudInterface;
-use App\Models\Category;
+use App\Models\Priority;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Auth;
-class CategoryRepository implements CrudInterface{
+class PriorityRepository implements CrudInterface{
 
     public function getAll(){
-        $allCategory = Category::get();
-        $category=[];
+        $allPriority = Priority::get();
+        $Priority=[];
         $value = [];
-        foreach($allCategory as $key=>$val){
+        foreach($allPriority as $key=>$val){
             $value['id']=$val->id;
             $value['name']=$val->name;
             $value['is_active']=$val->is_active;
@@ -21,32 +21,32 @@ class CategoryRepository implements CrudInterface{
             }else{
                 $value['status']='<span class="badge bg-danger">Deactive</span>';
             }
-            array_push($category,$value);
+            array_push($Priority,$value);
         }
-        return $category;
+        return $Priority;
     }
 
     public function findById($id){
-        return $category = Category::findorfail($id);
+        return $Priority = Priority::findorfail($id);
     }
     public function update(Request $request,$id){
-        $category = $this->findById($id);
-        $category->name = $request->name;
-        $category->is_active = 1;
-        $category->save();
-        return $category;
+        $Priority = $this->findById($id);
+        $Priority->name = $request->name;
+        $Priority->is_active = 1;
+        $Priority->save();
+        return $Priority;
     }
     public function create(Request $request){
-        $category = new Category();
-        $category->name = $request->name;
-        $category->is_active = 1;
-        $category->save();
-        return $category;
+        $Priority = new Priority();
+        $Priority->name = $request->name;
+        $Priority->is_active = 1;
+        $Priority->save();
+        return $Priority;
     }
     public function delete($id){
-        $category = $this->findById($id);
-        $category->is_active = 0;
-        $category->save();
-        return $category;
+        $Priority = $this->findById($id);
+        $Priority->is_active = 0;
+        $Priority->save();
+        return $Priority;
     }
 }

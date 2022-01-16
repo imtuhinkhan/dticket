@@ -14,8 +14,13 @@
                               @csrf
                             <div class="mb-3">
                                 <label for="catName" class="form-label">Category Name</label>
-                                <input type="text" class="form-control" id="catName" placeholder="Bill" name="name">
+                                <input type="text" class="form-control" id="catName" placeholder="Bill" name="name" @if(@isset($category))
+                                    value="{{$category->name}}"                                    
+                                @endif>
                               </div>
+                                  @if(@isset($category))
+                                      <input type="hidden" name="id" value="{{$category->id}}">
+                                  @endif
                               <button value="Save" class="btn btn-primary">Save</button>
                           </form>
                         </div>

@@ -27,7 +27,7 @@
                     <th>
                         <a href="/{{$attributes['tag']}}/{{$data['id']}}/edit"><i class="fas fa-pencil" title="Delete" style="color: rgb(233, 145, 14)"></i></a>
                         @if($data['is_active']==1)
-                        <a href="/{{$attributes['tag']}}/{{$data['id']}}/delete"><i class="fas fa-trash danger" style="color: rgb(228, 39, 49)" title="Delete"></i></a>
+                        <a onclick="return confirm('Are you sure you want to deactive this item')" href="/{{$attributes['tag']}}/{{$data['id']}}/delete"><i class="fas fa-trash danger show_confirm" data-tag="{{$attributes['tag']}}" data-id={{$data['id']}} style="color: rgb(228, 39, 49);cursor: pointer;" title="deactive"></i></a>
                         @endif
                     </th>
                 </tr>
@@ -46,10 +46,36 @@
         </tfoot>
     </table>
   </div>
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 
-  <script>
-    $(document).ready(function() {
-    $('#table-1').DataTable();
+  @section('script')
+  <script type="text/javascript">
+     $(document).ready(function() {
+        $('#table-1').DataTable();
+        // $(document).on('click','.show_confirm',function(event) {
+        //     var id = $(this).data('id');
+        //     var tag = $(this).data('tag');
+        //     swal({
+        //         title: `Are you sure you want to delete this record?`,
+        //         text: "If you delete this, it will be gone forever.",
+        //         icon: "warning",
+        //         buttons: true,
+        //         dangerMode: true,
+        //     })
+        //     .then((willDelete) => {
+        //         if(willDelete){
+        //             console.log(id,tag)
+        //         $.ajax({
+        //                 url: "{{url('/')}}"+tag+'/delete/'+id,
+        //                 type: "GET",
+        //                 success: function (data) {
+        //                     console.log(data)
+        //                 }         
+        //             });
+        //         }
+        //     });
+        // });
+
     });
-    </script>
+  </script>
+ 
+  @endsection
