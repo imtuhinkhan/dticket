@@ -20,8 +20,12 @@
                     <th>{{++$key}}</th>
 
                     @foreach ($attributes['theader'] as $item)
+                    @if($item=='Photo')
+                    <th><img src='/{{$data['photo']}}' width="50px" /></th>
 
+                    @else
                     <th>{!!$data[strtolower($item)]!!}</th>
+                    @endif
                     @endforeach
 
                     <th>

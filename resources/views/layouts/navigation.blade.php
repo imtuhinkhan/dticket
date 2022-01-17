@@ -30,14 +30,14 @@
                     </x-nav-link-parent>
                     @endhasanyrole
                     @role('admin')
-                    <x-nav-link-parent :href="'#'" :active="request()->routeIs('user.*')">
+                    <x-nav-link-parent :href="'#'" :active="request()->is('user/*')">
                         <x-slot name="name">Users</x-slot>
                         <x-slot name="children">
-                            <a href="#">Customers</a>
+                            <a href="/user/customer">Customers</a>
                             <span class="separator"></span>
-                            <a href="#">Employees</a>
+                            <a href="/user/employee">Employees</a>
                             <span class="separator"></span>
-                            <a href="#">Admins</a>
+                            <a href="/user/admin">Admins</a>
                         </x-slot>
                     </x-nav-link-parent>
 
@@ -108,7 +108,7 @@
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
             @hasanyrole('admin|employee')
-            <x-nav-link-parent :href="'#'" :active="request()->routeIs('padron.*')">
+            <x-nav-link-parent :href="'#'" :active="request()->is('ticket/*')">
                 <x-slot name="name">Tickets</x-slot>
                 <x-slot name="children">
                     <a href="#">Opened Tickets</a>
@@ -122,18 +122,18 @@
             </x-nav-link-parent>
             @endhasanyrole
             @role('admin')
-            <x-nav-link-parent :href="'#'" :active="request()->routeIs('padron.*')">
+            <x-nav-link-parent :href="'#'" :active="request()->is('user/*')">
                 <x-slot name="name">Users</x-slot>
                 <x-slot name="children">
-                    <a href="#">Customers</a>
+                    <a href="/user/customer">Customers</a>
                     <span class="separator"></span>
-                    <a href="#">Employees</a>
+                    <a href="/user/employee">Employees</a>
                     <span class="separator"></span>
-                    <a href="#">Admins</a>
+                    <a href="/user/admin">Admins</a>
                 </x-slot>
             </x-nav-link-parent>
 
-            <x-nav-link-parent :href="'#'" :active="request()->routeIs('setting.*')">
+            <x-nav-link-parent :href="'#'" :active="request()->is('setting/*')">
                 <x-slot name="name">Settings</x-slot>
                 <x-slot name="children">
                     <a href="/setting/service">Services</a>

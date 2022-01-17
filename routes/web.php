@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\SettingController;
+use App\Http\Controllers\UserController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -45,6 +46,12 @@ Route::get('/setting/priority/{id}/delete', [SettingController::class, 'priority
 Route::get('/setting/organization', [SettingController::class, 'organizationSetting'])->middleware(['auth'])->name('organization');
 Route::post('/setting/organization/save', [SettingController::class, 'updateOrganization'])->middleware(['auth'])->name('organization.updateOrganization');
 
+//user
+Route::get('/user/{type}', [UserController::class, 'userList'])->middleware(['auth'])->name('user');
+Route::get('/user/{type}/new', [UserController::class, 'userAddForm'])->middleware(['auth'])->name('user-add');
+Route::post('/user/save', [UserController::class, 'userSave'])->middleware(['auth']);
+Route::get('/user/{type}/{id}/edit', [UserController::class, 'userEdit'])->middleware(['auth']);
+Route::get('/user/{type}/{id}/delete', [UserController::class, 'userDelete'])->middleware(['auth']);
 
 Route::get('/ticket', function () {
     return view('ticket');

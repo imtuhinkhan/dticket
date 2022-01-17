@@ -24,9 +24,6 @@ class SettingController extends Controller
         $this->settingRepository = $settingRepository;
         $this->serviceRepository = $serviceRepository;
         $this->middleware('auth');
-        // if(!Auth::user()->hasRole('admin')){
-        //     dd('Unauthorize Action');
-        // }
        
     }
     private function checkAuth(){
