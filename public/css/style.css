@@ -82,3 +82,9 @@ footer{
     font-size: 18px;
     margin: 13px 0px;
 }
+
+.info-text{
+  font-size: 13px;
+  font-style: italic;
+  color: #898585;
+}

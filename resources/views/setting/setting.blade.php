@@ -37,18 +37,21 @@
                               <div class="mb-3">
                                 <label for="largeLogo" class="form-label">Large Logo</label>
                                 <input type="file" class="form-control" id="largeLogo" name="largeLogo">
+                                <p class='info-text'>Suggested Size: 423x76 pixels</p>
                                 <img src='/@if(@isset($organization)){{$organization->largeLogo}} @endif' width='80px' style="border: 1px solid;padding: 12px;margin: 5px;" id="largeLogo">
                               </div>
 
                               <div class="mb-3">
                                 <label for="smallLogo" class="form-label">Small Logo</label>
                                 <input type="file" class="form-control" id="smallLogo" name="smallLogo" >
+                                <p class='info-text'>Suggested Size: 220x150 pixels</p>
                                 <img src='/@if(@isset($organization)){{$organization->smallLogo}} @endif' width='80px' style="border: 1px solid;padding: 12px;margin: 5px;"  id="smallLogo">
                               </div>
 
                               <div class="mb-3">
                                 <label for="favicon" class="form-label">Favicon</label>
                                 <input type="file" class="form-control" id="favicon" name="favicon" >
+                                <p class='info-text'>Suggested Size:32x32 pixels</p>
                                 <img src='/@if(@isset($organization)){{$organization->favicon}} @endif' width='80px' style="border: 1px solid;padding: 12px;margin: 5px;"  id="favicon">
 
                               </div>
