@@ -1,1 +1,1 @@
-<img src="/images/dticket.png" style="width: 70%; margin: 0 auto"/>
+<img src="{{$organizationData->largeLogo}}" style="width: 70%; margin: 0 auto"/>

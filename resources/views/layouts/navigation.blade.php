@@ -44,11 +44,13 @@
                     <x-nav-link-parent :href="'#'" :active="request()->is('setting/*')">
                         <x-slot name="name">Settings</x-slot>
                         <x-slot name="children">
+                            <a href="/setting/service">Services</a>
+                            <span class="separator"></span>
                             <a href="/setting/category">Category Setting</a>
                             <span class="separator"></span>
                             <a href="/setting/priority">Priority Setting</a>
                             <span class="separator"></span>
-                            <a href="#">Organization Setting</a>
+                            <a href="/setting/organization">Organization Setting</a>
                             <span class="separator"></span>
                             <a href="#">Mail Setting</a>
                         </x-slot>
@@ -134,11 +136,13 @@
             <x-nav-link-parent :href="'#'" :active="request()->routeIs('setting.*')">
                 <x-slot name="name">Settings</x-slot>
                 <x-slot name="children">
+                    <a href="/setting/service">Services</a>
+                    <span class="separator"></span>
                     <a href="/setting/category">Category Setting</a>
                     <span class="separator"></span>
                     <a href="/setting/priority">Priority Setting</a>
                     <span class="separator"></span>
-                    <a href="#">Organization Setting</a>
+                    <a href="/setting/organization">Organization Setting</a>
                     <span class="separator"></span>
                     <a href="#">Mail Setting</a>
                 </x-slot>

@@ -43,7 +43,7 @@
 
             <footer class="bg-primary shadow">
                 <div style="background: #000000b3;padding:5px">
-                    <p>Copyright: DTHEME@2022</p>
+                    <p>{{$organizationData->footerText}}</p>
                 </div>
             </footer>
         </div>

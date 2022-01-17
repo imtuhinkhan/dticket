@@ -76,3 +76,9 @@ footer{
     text-align: center;
     color:white;
 }
+
+.formText{
+  color: #82817f;
+    font-size: 18px;
+    margin: 13px 0px;
+}
