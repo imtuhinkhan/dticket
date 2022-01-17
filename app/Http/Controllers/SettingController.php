@@ -3,11 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Spatie\Permission\Models\Role;
 use App\Repositories\CategoryRepository;
 use App\Repositories\PriorityRepository;
 use App\Repositories\SettingRepository;
 use App\Repositories\ServiceRepository;
 Use Alert;
+use Auth;
 class SettingController extends Controller
 {
     public $categoryRepository;
@@ -22,9 +24,18 @@ class SettingController extends Controller
         $this->settingRepository = $settingRepository;
         $this->serviceRepository = $serviceRepository;
         $this->middleware('auth');
+        // if(!Auth::user()->hasRole('admin')){
+        //     dd('Unauthorize Action');
+        // }
+       
     }
-    //category start
+    private function checkAuth(){
+        if(!Auth::user()->hasRole('admin')){
+            dd('Unauthorize Action');
+        }
+    }
     public function categoryList(){
+        $this->checkAuth();
         $category = $this->categoryRepository->getAll();
         $theader=['Name','Status'];
         $tag = 'setting/category';
@@ -32,10 +43,12 @@ class SettingController extends Controller
     
     }
     public function categoryAddForm(){
+        $this->checkAuth();
         return view('category.form');
     }
 
     public function categorySave(Request $req){
+        $this->checkAuth();
         $formData = $req->all();
         $validator = \Validator::make($formData,[
             'name' =>'required',
@@ -63,11 +76,13 @@ class SettingController extends Controller
     }
 
     public function categoryEdit($id){
+        $this->checkAuth();
         $category = $this->categoryRepository->findById($id);
         return view('category.form',compact('category'));
     }
 
     public function categoryDelete($id){
+        $this->checkAuth();
         toast('Category Deactivated','info');
         $category = $this->categoryRepository->delete($id);
         return redirect()->route('category');
@@ -77,6 +92,7 @@ class SettingController extends Controller
     //service start
 
     public function serviceList(){
+        $this->checkAuth();
         $service = $this->serviceRepository->getAll();
         $theader=['Name','Status'];
         $tag = 'setting/service';
@@ -85,10 +101,12 @@ class SettingController extends Controller
     }
     
     public function serviceAddForm(){
+        $this->checkAuth();
         return view('service.form');
     }
 
     public function serviceSave(Request $req){
+        $this->checkAuth();
         $formData = $req->all();
         $validator = \Validator::make($formData,[
             'name' =>'required',
@@ -116,6 +134,7 @@ class SettingController extends Controller
     }
 
     public function serviceEdit($id){
+        $this->checkAuth();
         $service = $this->serviceRepository->findById($id);
         return view('service.form',compact('service'));
     }
@@ -129,6 +148,7 @@ class SettingController extends Controller
 
     //priority start
     public function priorityList(){
+        $this->checkAuth();
         $priority = $this->priorityRepository->getAll();
         $theader=['Name','Status'];
         $tag = 'setting/priority';
@@ -137,10 +157,12 @@ class SettingController extends Controller
     }
 
     public function priorityAddForm(){
+        $this->checkAuth();
         return view('priority.form');
     }
 
     public function prioritySave(Request $req){
+        $this->checkAuth();
         $formData = $req->all();
         $validator = \Validator::make($formData,[
             'name' =>'required',
@@ -168,11 +190,13 @@ class SettingController extends Controller
     }
 
     public function priorityEdit($id){
+        $this->checkAuth();
         $priority = $this->priorityRepository->findById($id);
         return view('priority.form',compact('priority'));
     }
 
     public function priorityDelete($id){
+        $this->checkAuth();
         toast('Priority Deactivated','info');
         $priority = $this->priorityRepository->delete($id);
         return redirect()->route('priority');
@@ -181,11 +205,13 @@ class SettingController extends Controller
 
     //organization setting start
     public function organizationSetting(){
+        $this->checkAuth();
         $organization = $this->settingRepository->getSetting();
         return view('setting.setting',compact('organization'));
     }
 
     public function updateOrganization(Request $req){
+        $this->checkAuth();
         $organization = $this->settingRepository->updateOrganization($req);
         toast('Organization information updated','success');
         return redirect()->route('organization');
