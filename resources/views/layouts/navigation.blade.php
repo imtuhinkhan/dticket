@@ -42,7 +42,7 @@
                     </x-nav-link-parent>
 
                     <x-nav-link-parent :href="'#'" :active="request()->is('setting/*')">
-                        <x-slot name="name">Settings @php if(!request()->is('setting/*')) print_r(123) @endphp</x-slot>
+                        <x-slot name="name">Settings</x-slot>
                         <x-slot name="children">
                             <a href="/setting/category">Category Setting</a>
                             <span class="separator"></span>
