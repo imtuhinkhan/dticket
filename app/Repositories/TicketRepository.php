@@ -3,7 +3,7 @@ namespace App\Repositories;
 use Illuminate\Http\Request;
 use App\Interfaces\TicketInterface;
 use App\Models\Ticket;
-use App\Models\TicketReplies;
+use App\Models\TicketReplay;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use App\Repositories\CategoryRepository;
@@ -60,7 +60,13 @@ class TicketRepository implements TicketInterface{
         return $ticket;
     }
     private function getLastTicketId(){
-        return $ticket = Ticket::orderby('id','DESC')->first()->id;
+         $ticket = Ticket::orderby('id','DESC')->first();
+         if(!$ticket){
+            $ticket=1;
+         }else{
+             $ticket = $ticket->id;
+         }
+         return $ticket;
     }
     public function addTicket(Request $req){
         $categoryRepository =new CategoryRepository();
@@ -82,5 +88,37 @@ class TicketRepository implements TicketInterface{
        }
         $ticket->save();
         return $ticket;
+    }
+    public function findById($id){
+        return $ticket = Ticket::with('service','category','priority','customer','lastReply','comments')->findorfail($id);
+
+    }
+    public function changeStatus($id,$status){
+        $ticket = $this->findById($id);
+        $ticket->status = $status;
+        $ticket->save();
+        return $ticket;
+    }
+
+    public function ticketDetails($id){
+        return $ticket = $this->findById($id);
+    }
+
+    public function ticketReplaySave(Request $req){
+        $reply = new TicketReplay();
+        $reply->reply=$req->reply;
+        if ($files = $req->file('photo')) {
+            $path = 'images/ticket/';
+            $fimage = uniqid() . "." . $files->getClientOriginalExtension();
+            $files->move($path, $fimage);
+            $reply->image = $path.$fimage;
+        }
+        $reply->ticket_id = $req->ticketID;	
+        $reply->user_id	= Auth::user()->id;
+        $reply->save();
+        $ticket = $this->findById($req->ticketID);
+        $ticket->last_replay_by =Auth::user()->id;
+        $ticket->save();
+        return $reply;
     }
 }

@@ -88,3 +88,154 @@ footer{
   font-style: italic;
   color: #898585;
 }
+
+.act-btn{
+  font-size: 8px;
+  padding: 0.2rem;
+}
+
+#details {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#details td, #details th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#details tr:nth-child(even){background-color: #f2f2f2;}
+
+#details tr:hover {background-color: #ddd;}
+
+#details th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #04AA6D;
+  color: white;
+}
+.reply{
+  margin: 0px;
+  margin-top: 10px;
+  border: 1px solid #1c9f9f;
+    border-radius: 5px;
+    padding: 6px;
+}
+.reply-box{
+  margin: 0px;
+  margin-top: 10px;
+  border: 1px solid #1c9f9f;
+    border-radius: 5px;
+    padding: 6px;
+}
+
+/*Comment*/
+
+#clicked {
+  padding-top: 1px;
+  padding-bottom: 1px;
+  text-align: center;
+  width: 100%;
+  background-color: #ecb21f;
+  border-color: #a88734 #9c7e31 #846a29;
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 13px
+}
+
+#profile {
+  background-color: unset
+}
+
+#post {
+  margin: 10px;
+  padding: 6px;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  text-align: center;
+  background-color: #ecb21f;
+  border-color: #a88734 #9c7e31 #846a29;
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 13px;
+  width: 50%
+}
+
+.comments {
+  margin-top: 5%;
+  margin-left: 20px
+}
+
+.darker {
+  border: 1px solid #ecb21f;
+  float: right;
+  border-radius: 5px;
+  padding-left: 40px;
+  padding-right: 30px;
+  padding-top: 10px
+}
+
+.comment {
+  border: 1px solid rgb(48 87 135 / 97%);
+  background-color: rgb(48 87 135 / 97%);
+  float: left;
+  border-radius: 5px;
+  padding-left: 40px;
+  padding-right: 30px;
+  padding-top: 10px
+}
+
+.comment h4,
+.comment span,
+.darker h4,
+.darker span {
+  display: inline
+}
+
+.comment p,
+.comment span,
+.darker p,
+.darker span {
+  color: rgb(184, 183, 183)
+}
+
+h1,
+h4 {
+  color: white;
+  font-weight: bold
+}
+
+label {
+  color: rgb(212, 208, 208)
+}
+
+#align-form {
+  margin-top: 20px
+}
+
+.form-group p a {
+  color: white
+}
+
+#checkbx {
+}
+
+#darker img {
+  margin-right: 15px;
+  position: static
+}
+
+.form-group input,
+.form-group textarea {
+  border: 1px solid rgba(16, 46, 46, 1);
+  border-radius: 12px
+}
+
+form {
+  border: 1px solid rgb(48 87 135 / 97%);
+  background-color: rgb(48 87 135 / 97%);
+  border-radius: 5px;
+  padding: 20px
+}

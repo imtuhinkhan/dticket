@@ -9,10 +9,10 @@ use App\Models\Priority;
 use App\Models\Service;
 use App\Models\User;
 use App\Models\Category;
+use App\Models\TicketReply;
 class Ticket extends Model
 {
     use HasFactory;
-
     public function service()
     {
         return $this->hasOne(Service::class,'id','service_id');
@@ -36,5 +36,10 @@ class Ticket extends Model
     public function lastReply()
     {
         return $this->hasOne(User::class,'id','last_replay_by');
+    }
+
+    public function comments()
+    {
+        return $this->hasMany(TicketReplay::class);
     }
 }

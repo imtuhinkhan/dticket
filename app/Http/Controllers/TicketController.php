@@ -90,4 +90,27 @@ class TicketController extends Controller
             return redirect()->route('ticket');
         }
     }
+
+    public function changeStatus($id,$status){
+        $ticket = $this->ticketRepository->changeStatus($id,$status);
+        if($ticket){
+            Alert::success('Success','Ticket mark as '. ticketStatus($status));
+            return redirect()->back();
+        }
+    }
+
+    public function ticketDetails($id){
+        $ticket = $this->ticketRepository->ticketDetails($id);
+        if(Auth::user()->hasRole('customer') && Auth::user()->id!=$ticket->customer_id){
+            return redirect('/unauthorized');
+        }
+
+        return view('ticket.details',compact('ticket'));
+    }
+
+    public function ticketReplaySave(Request $req){
+        $ticket = $this->ticketRepository->ticketReplaySave($req);
+        Alert::success('Success','Reply Send');
+            return redirect()->back();
+    }
 }

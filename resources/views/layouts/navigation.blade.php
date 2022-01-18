@@ -12,11 +12,11 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                    <x-nav-link :href="route('dashboard')" :active="request()->is('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
                     @hasanyrole('admin|employee|customer')
-                    <x-nav-link-parent :href="'#'" :active="request()->routeIs('ticket/*')">
+                    <x-nav-link-parent :href="'#'" :active="request()->is('ticket/*')">
                         <x-slot name="name">Tickets</x-slot>
                         <x-slot name="children">
                             @role('customer')

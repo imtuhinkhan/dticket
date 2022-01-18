@@ -14,4 +14,7 @@ interface TicketInterface{
     public function getAllCloseSolvedTicketByCustomer();
     public function getAllCloseUnSolvedTicketByCustomer();
     public function addTicket(Request $request);
+    public function ticketReplaySave(Request $request);
+    public function changeStatus($id,$status);
+    public function ticketDetails($id);
 }
