@@ -19,6 +19,10 @@
                     <x-nav-link-parent :href="'#'" :active="request()->routeIs('ticket/*')">
                         <x-slot name="name">Tickets</x-slot>
                         <x-slot name="children">
+                            @role('customer')
+                            <a href="/ticket/new">Add Ticket</a>
+                            <span class="separator"></span>
+                            @endrole
                             <a href="/ticket/open">Opened Tickets</a>
                             <span class="separator"></span>
                             <a href="/ticket/re-open">Reopened Tickets</a>
@@ -111,6 +115,10 @@
             <x-nav-link-parent :href="'#'" :active="request()->is('ticket/*')">
                 <x-slot name="name">Tickets</x-slot>
                 <x-slot name="children">
+                    @role('customer')
+                    <a href="/ticket/new">Add Ticket</a>
+                    <span class="separator"></span>
+                    @endrole
                     <a href="#">Opened Tickets</a>
                     <span class="separator"></span>
                     <a href="#">Reopened Tickets</a>

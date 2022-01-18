@@ -57,16 +57,13 @@ Route::get('/user/{type}/{id}/delete', [UserController::class, 'userDelete'])->m
 //ticket
 Route::get('/ticket/open', [TicketController::class, 'openTicketList'])->middleware(['auth'])->name('ticket');
 Route::get('/ticket/re-open', [TicketController::class, 'reOpenTicketList'])->middleware(['auth'])->name('ticket.reopen');
-Route::get('/ticket/colse-solved', [TicketController::class, 'closeSolved'])->middleware(['auth'])->name('ticket.closeSolved');
-Route::get('/ticket/colse-unsolved', [TicketController::class, 'closeSolved'])->middleware(['auth'])->name('ticket.closeUnsolved');
-Route::post('/ticket/new', [TicketController::class, 'closeSolved'])->middleware(['auth'])->name('ticket.new');
+Route::get('/ticket/close-solved', [TicketController::class, 'closeSolved'])->middleware(['auth'])->name('ticket.closeSolved');
+Route::get('/ticket/close-unsolved', [TicketController::class, 'closeUnsolved'])->middleware(['auth'])->name('ticket.closeUnsolved');
+Route::get('/ticket/new', [TicketController::class, 'addTicketForm'])->middleware(['auth'])->name('ticket.addTicketForm');
+Route::post('/ticket/save', [TicketController::class, 'saveTicket'])->middleware(['auth'])->name('ticket.saveTicket');
 Route::get('/ticket/{id}/changeStatus', [TicketController::class, 'changeStatus'])->middleware(['auth'])->name('ticket.changeStatus');
 Route::get('/ticket/{id}/details', [TicketController::class, 'ticketDetails'])->middleware(['auth'])->name('ticket.ticketDetails');
 Route::post('/ticket/replay/save', [TicketController::class, 'ticketReplaySave'])->middleware(['auth'])->name('ticket.ticketReplaySave');
-
-Route::get('/ticket', function () {
-    return view('unauthorized');
-})->middleware(['auth'])->name('ticket');
 
 Route::get('/unauthorized', function () {
     return view('unauthorized');
