@@ -54,6 +54,12 @@ Route::get('/user/{type}/{id}/edit', [UserController::class, 'userEdit'])->middl
 Route::get('/user/{type}/{id}/delete', [UserController::class, 'userDelete'])->middleware(['auth']);
 
 Route::get('/ticket', function () {
-    return view('ticket');
+    return view('unauthorized');
 })->middleware(['auth'])->name('ticket');
+
+Route::get('/unauthorized', function () {
+    return view('unauthorized');
+});
+
+
 require __DIR__.'/auth.php';
