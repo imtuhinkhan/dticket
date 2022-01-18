@@ -19,7 +19,6 @@ class CreateTicketRepliesTable extends Migration
             $table->text('image')->nullable();
             $table->unsignedBigInteger('ticket_id');
             $table->unsignedBigInteger('user_id');
-            $table->tinyInteger('status');
             $table->timestamps();
         });
     }

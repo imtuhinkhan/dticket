@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\TicketController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -52,6 +53,16 @@ Route::get('/user/{type}/new', [UserController::class, 'userAddForm'])->middlewa
 Route::post('/user/save', [UserController::class, 'userSave'])->middleware(['auth']);
 Route::get('/user/{type}/{id}/edit', [UserController::class, 'userEdit'])->middleware(['auth']);
 Route::get('/user/{type}/{id}/delete', [UserController::class, 'userDelete'])->middleware(['auth']);
+
+//ticket
+Route::get('/ticket/open', [TicketController::class, 'openTicketList'])->middleware(['auth'])->name('ticket');
+Route::get('/ticket/re-open', [TicketController::class, 'reOpenTicketList'])->middleware(['auth'])->name('ticket.reopen');
+Route::get('/ticket/colse-solved', [TicketController::class, 'closeSolved'])->middleware(['auth'])->name('ticket.closeSolved');
+Route::get('/ticket/colse-unsolved', [TicketController::class, 'closeSolved'])->middleware(['auth'])->name('ticket.closeUnsolved');
+Route::post('/ticket/new', [TicketController::class, 'closeSolved'])->middleware(['auth'])->name('ticket.new');
+Route::get('/ticket/{id}/changeStatus', [TicketController::class, 'changeStatus'])->middleware(['auth'])->name('ticket.changeStatus');
+Route::get('/ticket/{id}/details', [TicketController::class, 'ticketDetails'])->middleware(['auth'])->name('ticket.ticketDetails');
+Route::post('/ticket/replay/save', [TicketController::class, 'ticketReplaySave'])->middleware(['auth'])->name('ticket.ticketReplaySave');
 
 Route::get('/ticket', function () {
     return view('unauthorized');

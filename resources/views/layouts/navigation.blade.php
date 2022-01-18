@@ -15,17 +15,17 @@
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
-                    @hasanyrole('admin|employee')
+                    @hasanyrole('admin|employee|customer')
                     <x-nav-link-parent :href="'#'" :active="request()->routeIs('ticket/*')">
                         <x-slot name="name">Tickets</x-slot>
                         <x-slot name="children">
-                            <a href="#">Opened Tickets</a>
+                            <a href="/ticket/open">Opened Tickets</a>
                             <span class="separator"></span>
-                            <a href="#">Reopened Tickets</a>
+                            <a href="/ticket/re-open">Reopened Tickets</a>
                             <span class="separator"></span>
-                            <a href="#">Closed & Resolved Tickets</a>
+                            <a href="/ticket/close-solved">Closed & Resolved Tickets</a>
                             <span class="separator"></span>
-                            <a href="#">Closed & Unresolved Tickets</a>
+                            <a href="/ticket/close-unsolved">Closed & Unresolved Tickets</a>
                         </x-slot>
                     </x-nav-link-parent>
                     @endhasanyrole
@@ -107,7 +107,7 @@
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
-            @hasanyrole('admin|employee')
+            @hasanyrole('admin|employee|customer')
             <x-nav-link-parent :href="'#'" :active="request()->is('ticket/*')">
                 <x-slot name="name">Tickets</x-slot>
                 <x-slot name="children">
