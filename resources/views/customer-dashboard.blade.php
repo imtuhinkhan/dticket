@@ -18,14 +18,18 @@
                     <div class="row" style="margin-top: 10px; margin-bottom:10px">
                         <div class="col-12">
                             <div class="card">
-                                <div class="card-header bg-success text-white">Graphical Views of Monthly Tickets</div>
-                                <canvas id="myChart" width="400" height="100"></canvas>
+                                <div class="card-header bg-success text-white">Graphical Views of Tickets Support</div>
+                                <div height="100px">
+                                    <canvas id="myChart" style="display: block; box-sizing: border-box; height: 500.6px!imortant; width: 500.6px!imortant;"></canvas>
+                                </div>
+
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-12">
-                            {{-- <x-d-data-table :header="'Latest Tickets'"/> --}}
+                        <div class="card-header bg-success text-white">All My Ticket</div>
+                        @include('ticket.table')
                         </div>
                     </div>
                 </div>
@@ -36,30 +40,29 @@
 <script>
     const ctx = document.getElementById('myChart').getContext('2d');
     const myChart = new Chart(ctx, {
-        type: 'bar',
+        type: 'pie',
         data: {
-            labels: {!! json_encode(array_reverse($datename)) !!},
+            labels: ['Solved','Unsolved'],
             datasets: [{
                 label: '# of resolved Tickets',
-                data:  {!! json_encode($solved) !!},
-                backgroundColor:'rgba(75, 192, 192, 0.2)',
-                borderColor:'rgba(75, 192, 192, 1)',
+                data:  {!! json_encode($data) !!},
+                backgroundColor:['#ef5350','#66bb6a'],
                 borderWidth: 1
                 
-            },{
-                label: '# of unresolved tickets',
-                data:  {!! json_encode($unsolved) !!},
-                backgroundColor: 'rgba(255, 99, 132, 0.2)',
-                borderColor: 'rgba(255, 99, 132, 1)',
-                borderWidth: 1
             }]
         },
         options: {
-            scales: {
-                y: {
-                    beginAtZero: true
-                }
-            }
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+        legend: {
+            position: 'top',
+        },
+        title: {
+            display: true,
+            text: 'Graphical Views of Tickets Support'
         }
+        }
+    },
     });
     </script>

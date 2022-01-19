@@ -15,7 +15,7 @@ class TicketRepository implements TicketInterface{
     }
 
     public function getAllOpenTicket(){
-        $ticket = Ticket::with('service','category','priority','customer','lastReply')->where([['status'=>1]])->get();
+        $ticket = Ticket::with('service','category','priority','customer','lastReply')->where('status',1)->get();
         return $ticket;
     }
 
@@ -120,5 +120,30 @@ class TicketRepository implements TicketInterface{
         $ticket->last_replay_by =Auth::user()->id;
         $ticket->save();
         return $reply;
+    }
+
+    public function countTicket(){
+        $open =count($this->getAllOpenTicket());
+        $reopen =count($this->getAllReOpenTicket());
+        $resolved =count($this->getAllCloseSolvedTicket());
+        $unsolved =count($this->getAllCloseUnSolvedTicket());
+        return [
+            'open'=>$open,
+            'reopen'=>$reopen,
+            'resolved'=>$resolved,
+            'unsolved'=>$unsolved,
+        ];
+    }
+    public function countTicketByCustomer(){
+        $open =count($this->getAllOpenTicketByCustomer());
+        $reopen =count($this->getAllReOpenTicketByCustomer());
+        $resolved =count($this->getAllCloseSolvedTicketByCustomer());
+        $unsolved =count($this->getAllCloseUnSolvedTicketByCustomer());
+        return [
+            'open'=>$open,
+            'reopen'=>$reopen,
+            'resolved'=>$resolved,
+            'unsolved'=>$unsolved,
+        ];
     }
 }
