@@ -165,7 +165,7 @@ footer{
 
 .comments {
   margin-top: 5%;
-  margin-left: 20px
+  margin-left: 20px;
 }
 
 .darker {
@@ -184,7 +184,9 @@ footer{
   border-radius: 5px;
   padding-left: 40px;
   padding-right: 30px;
-  padding-top: 10px
+  padding-top: 10px;
+  min-width: 100%;
+
 }
 
 .comment h4,

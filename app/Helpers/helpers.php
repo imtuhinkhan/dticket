@@ -17,3 +17,11 @@ if (! function_exists('ticketStatus')) {
         return $status;
     }
 }
+
+if (! function_exists('timeConvert')) {
+    function timeConvert($time)
+    {
+        return Carbon::now()->toDateTimeString();
+    }
+}
+

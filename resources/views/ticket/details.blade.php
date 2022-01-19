@@ -54,28 +54,33 @@
                                 </tr>
                                 <tr>
                                     <td>Attachment</td>
-                                    <td><img src="{{$ticket->image}}"/></td>
+                                    <td><img src="/{{$ticket->image}}" style="width:25%;"/></td>
                                 </tr>
                             </table>
                         </div>
                     </div>
                     <div class="row reply-box">
                         <div class="col-sm-5 col-md-6 col-12 pb-4">
-                            <div class="comment mt-4 text-justify float-left"> <img src="https://i.imgur.com/yTFUilP.jpg" alt="" class="rounded-circle" width="40" height="40">
-                                <h4>Jhon Doe</h4> <span>- 20 October, 2018</span> <br>
-                                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Accusamus numquam assumenda hic aliquam vero sequi velit molestias doloremque molestiae dicta?</p>
-                                <img src="{{$ticket->image}}"/>
-                                
-                            </div>
+                            @foreach($ticket->comments as $row=>$val)
+                                <div class="comment mt-4 text-justify float-left"> <img src="/{{$val->user->userDetails->photo}}" alt="" class="rounded-circle" width="40" height="40">
+                                    <h4>{{$val->user->name}}</h4> <span>- {{timeConvert($val->created_at)}}</span> <br>
+                                    <p>{{$val->reply}}</p>
+                                    @if($val->image)
+                                    <a href="/{{$val->image}}"  download>Download Attachement</a>
+                                    @endif
+                                    
+                                </div>
+                            @endforeach
+
                         </div>
                         <div class="col-lg-4 col-md-5 col-sm-4 offset-md-1 offset-sm-1 col-12 mt-4">
-                            <form  method="POST" action="{{url('/')}}/replay/save">
+                            <form  method="POST" action="{{url('/')}}/replay/save" enctype="multipart/form-data">
                                 @csrf
                                 <div class="form-group">
                                     <h4>Reply to this ticket #{{$ticket->uniqueId}}</h4> <label for="message">Message</label> <textarea id="" msg cols="30" rows="5" class="form-control"  name="reply"></textarea>
                                 </div>
                                 <div class="mb-3">
-                                    <label for="catName" class="form-label">Screenshot</label>
+                                    <label for="catName" class="form-label">Attachement</label>
                                     <input type="file" class="form-control" id="catName" name="photo">
                        
                                   </div>

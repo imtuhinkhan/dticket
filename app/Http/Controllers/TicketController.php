@@ -109,6 +109,15 @@ class TicketController extends Controller
     }
 
     public function ticketReplaySave(Request $req){
+        $formData = $req->all();
+        $validator = \Validator::make($formData,[
+            'reply' =>'required',
+        ]);
+
+        if($validator->fails()){
+            Alert::error('Something Went Wrong', $validator->getMessageBag()->first());
+            return redirect()->back();
+        }
         $ticket = $this->ticketRepository->ticketReplaySave($req);
         Alert::success('Success','Reply Send');
             return redirect()->back();
