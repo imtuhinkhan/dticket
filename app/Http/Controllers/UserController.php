@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Repositories\UserRepository;
 use Alert;
-
+use Auth;
 class UserController extends Controller
 {
     public $userRepository;

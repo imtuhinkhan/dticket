@@ -15,6 +15,15 @@
                                 margin-bottom: 14px;
                                 font-weight: 600;
                             ">Details#{{$ticket->uniqueId}}</h2>
+                             
+                             <div style="float:right;margin:10px">
+                                @if($ticket->status==1 || $ticket->status==2)
+                                    <a href="/ticket/{{$ticket->id}}/changeStatus/3" class="btn btn-success btn-sm">Mark Close & Resolved</a>
+                                    <a href="/ticket/{{$ticket->id}}/changeStatus/4" class="btn btn-warning btn-sm">Mark Close & Unsolved</a>
+                                @else 
+                                <a href="/ticket/{{$ticket->id}}/changeStatus/2" class="btn btn-danger btn-sm">Reopen</a>
+                                @endif
+                             </div> 
                             <table id="details">
                                 <tr>
                                     <td>Ticket ID</td>
@@ -60,7 +69,13 @@
                         </div>
                     </div>
                     <div class="row reply-box">
+                  <h1 style="color:red;">Ticket Replies</h1>
+
+                        @if($ticket->status==1 || $ticket->status==2)
                         <div class="col-sm-5 col-md-6 col-12 pb-4">
+                        @else
+                        <div class="col-sm-12 col-md-12 col-12 pb-4">
+                        @endif
                             @foreach($ticket->comments as $row=>$val)
                                 <div class="comment mt-4 text-justify float-left"> <img src="/{{$val->user->userDetails->photo}}" alt="" class="rounded-circle" width="40" height="40">
                                     <h4>{{$val->user->name}}</h4> <span>- {{timeConvert($val->created_at)}}</span> <br>
@@ -73,6 +88,7 @@
                             @endforeach
 
                         </div>
+                        @if($ticket->status==1 || $ticket->status==2)
                         <div class="col-lg-4 col-md-5 col-sm-4 offset-md-1 offset-sm-1 col-12 mt-4">
                             <form  method="POST" action="{{url('/')}}/replay/save" enctype="multipart/form-data">
                                 @csrf
@@ -88,6 +104,8 @@
                                 <div class="form-group"> <button id="post" class="btn">Replay</button> </div>
                             </form>
                         </div>
+                        @endif
+
                     </div>
                 </div>
             </div>

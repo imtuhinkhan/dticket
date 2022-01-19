@@ -46,7 +46,7 @@
             datasets: [{
                 label: '# of resolved Tickets',
                 data:  {!! json_encode($data) !!},
-                backgroundColor:['#ef5350','#66bb6a'],
+                backgroundColor:['#66bb6a','#ef5350'],
                 borderWidth: 1
                 
             }]

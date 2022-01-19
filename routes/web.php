@@ -20,6 +20,7 @@ Route::get('/', function () {
     return view('auth.login');
 });
 
+
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth'])->name('dashboard');
 
 //service
@@ -68,6 +69,5 @@ Route::post('/replay/save/', [TicketController::class, 'ticketReplaySave'])->mid
 Route::get('/unauthorized', function () {
     return view('unauthorized');
 });
-
 
 require __DIR__.'/auth.php';

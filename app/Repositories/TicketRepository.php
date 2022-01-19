@@ -59,13 +59,8 @@ class TicketRepository implements TicketInterface{
         $ticket = Ticket::with('service','category','priority','customer','lastReply')->where(['customer_id'=>Auth::user()->id,'status'=>4])->get();
         return $ticket;
     }
-    private function getLastTicketId(){
-         $ticket = Ticket::orderby('id','DESC')->first();
-         if(!$ticket){
-            $ticket=1;
-         }else{
-             $ticket = $ticket->id;
-         }
+    private function generateUniqueId(){
+         $ticket = sprintf("%06d", mt_rand(1, 999999));
          return $ticket;
     }
     public function addTicket(Request $req){
@@ -79,7 +74,7 @@ class TicketRepository implements TicketInterface{
         $ticket->customer_id = Auth::user()->id;
         $ticket->last_replay_by = 0;
         $ticket->status = 1;
-        $ticket->uniqueId = $categoryRepository->findById($req->category)->name.'-'.$this->getLastTicketId();
+        $ticket->uniqueId = $this->generateUniqueId();
         if ($files = $req->file('photo')) {
             $path = 'images/ticket/';
             $fimage = uniqid() . "." . $files->getClientOriginalExtension();
@@ -87,6 +82,7 @@ class TicketRepository implements TicketInterface{
             $ticket->image = $path.$fimage;
        }
         $ticket->save();
+        $this->sendTicketMail($ticket,Auth::user()->email);
         return $ticket;
     }
     public function findById($id){
@@ -116,9 +112,11 @@ class TicketRepository implements TicketInterface{
         $reply->ticket_id = $req->ticketID;	
         $reply->user_id	= Auth::user()->id;
         $reply->save();
-        $ticket = $this->findById($req->ticketID);
-        $ticket->last_replay_by =Auth::user()->id;
-        $ticket->save();
+        if(!Auth::user()->hasRole('customer')){
+            $ticket = $this->findById($req->ticketID);
+            $ticket->last_replay_by =Auth::user()->id;
+            $ticket->save();
+        }
         return $reply;
     }
 
@@ -145,5 +143,9 @@ class TicketRepository implements TicketInterface{
             'resolved'=>$resolved,
             'unsolved'=>$unsolved,
         ];
+    }
+
+    public function sendTicketMail($ticket,$send_mail){
+        dispatch(new \App\Jobs\SendEmailJob($send_mail,$ticket));
     }
 }

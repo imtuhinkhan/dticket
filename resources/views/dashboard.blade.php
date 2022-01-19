@@ -12,8 +12,8 @@
                     <div class="row">
                         <x-d-stat-card :name="'Open Tickets'" :number="$count['open']" :type="'primary'" :icon="'envelope-open'"/>
                         <x-d-stat-card :name="'Re Open Tickets'" :number="$count['reopen']" :type="'info'" :icon="'envelope-open-text'"/>
-                        <x-d-stat-card :name="'ResolvedTickets'" :number="$count['resolved']" :type="'success'" :icon="'calender-check'"/>
-                        <x-d-stat-card :name="'UnResolvedTickets'" :number="$count['unsolved']" :type="'danger'" :icon="'calender-times'"/>
+                        <x-d-stat-card :name="'ResolvedTickets'" :number="$count['resolved']" :type="'success'" :icon="'check'"/>
+                        <x-d-stat-card :name="'UnResolvedTickets'" :number="$count['unsolved']" :type="'danger'" :icon="'times'"/>
                     </div>
                     <div class="row" style="margin-top: 10px; margin-bottom:10px">
                         <div class="col-12">
