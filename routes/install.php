@@ -1,10 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\SettingController;
-use App\Http\Controllers\UserController;
-use App\Http\Controllers\TicketController;
+use App\Http\Controllers\InstalltionController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,5 +13,7 @@ use App\Http\Controllers\TicketController;
 |
 */
 
-Route::get('/install', function () {return view('install.index');});
+Route::get('/install', [InstalltionController::class, 'index']);
+Route::post('/installtion/step1', [InstalltionController::class, 'step1']);
+Route::post('/installtion/step2', [InstalltionController::class, 'step2']);
 
