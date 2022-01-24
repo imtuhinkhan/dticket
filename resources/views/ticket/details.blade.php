@@ -18,10 +18,10 @@
                              
                              <div style="float:right;margin:10px">
                                 @if($ticket->status==1 || $ticket->status==2)
-                                    <a href="/ticket/{{$ticket->id}}/changeStatus/3" class="btn btn-success btn-sm">Mark Close & Resolved</a>
-                                    <a href="/ticket/{{$ticket->id}}/changeStatus/4" class="btn btn-warning btn-sm">Mark Close & Unsolved</a>
+                                    <a  href="{{url('/')}}/ticket/{{$ticket->id}}/changeStatus/3" class="btn btn-success btn-sm">Mark Close & Resolved</a>
+                                    <a  href="{{url('/')}}/ticket/{{$ticket->id}}/changeStatus/4" class="btn btn-warning btn-sm">Mark Close & Unsolved</a>
                                 @else 
-                                <a href="/ticket/{{$ticket->id}}/changeStatus/2" class="btn btn-danger btn-sm">Reopen</a>
+                                <a  href="{{url('/')}}/ticket/{{$ticket->id}}/changeStatus/2" class="btn btn-danger btn-sm">Reopen</a>
                                 @endif
                              </div> 
                             <table id="details">
@@ -63,7 +63,7 @@
                                 </tr>
                                 <tr>
                                     <td>Attachment</td>
-                                    <td><img src="/{{$ticket->image}}" style="width:25%;"/></td>
+                                    <td><img src="{{url('/')}}/{{$ticket->image}}" style="width:25%;"/></td>
                                 </tr>
                             </table>
                         </div>
@@ -77,11 +77,11 @@
                         <div class="col-sm-12 col-md-12 col-12 pb-4">
                         @endif
                             @foreach($ticket->comments as $row=>$val)
-                                <div class="comment mt-4 text-justify float-left"> <img src="/{{$val->user->userDetails->photo}}" alt="" class="rounded-circle" width="40" height="40">
+                                <div class="comment mt-4 text-justify float-left"> <img src="{{url('/')}}/{{$val->user->userDetails->photo}}" alt="" class="rounded-circle" width="40" height="40">
                                     <h4>{{$val->user->name}}</h4> <span>- {{timeConvert($val->created_at)}}</span> <br>
                                     <p>{{$val->reply}}</p>
                                     @if($val->image)
-                                    <a href="/{{$val->image}}"  download>Download Attachement</a>
+                                    <a  href="{{url('/')}}/{{$val->image}}"  download>Download Attachement</a>
                                     @endif
                                     
                                 </div>

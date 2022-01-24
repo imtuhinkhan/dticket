@@ -20,16 +20,16 @@
                         <x-slot name="name">Tickets</x-slot>
                         <x-slot name="children">
                             @role('customer')
-                            <a href="/ticket/new">Add Ticket</a>
+                            <a  href="{{url('/')}}/ticket/new">Add Ticket</a>
                             <span class="separator"></span>
                             @endrole
-                            <a href="/ticket/open">Opened Tickets</a>
+                            <a  href="{{url('/')}}/ticket/open">Opened Tickets</a>
                             <span class="separator"></span>
-                            <a href="/ticket/re-open">Reopened Tickets</a>
+                            <a  href="{{url('/')}}/ticket/re-open">Reopened Tickets</a>
                             <span class="separator"></span>
-                            <a href="/ticket/close-solved">Closed & Resolved Tickets</a>
+                            <a  href="{{url('/')}}/ticket/close-solved">Closed & Resolved Tickets</a>
                             <span class="separator"></span>
-                            <a href="/ticket/close-unsolved">Closed & Unresolved Tickets</a>
+                            <a  href="{{url('/')}}/ticket/close-unsolved">Closed & Unresolved Tickets</a>
                         </x-slot>
                     </x-nav-link-parent>
                     @endhasanyrole
@@ -37,24 +37,24 @@
                     <x-nav-link-parent :href="'#'" :active="request()->is('user/*')">
                         <x-slot name="name">Users</x-slot>
                         <x-slot name="children">
-                            <a href="/user/customer">Customers</a>
+                            <a  href="{{url('/')}}/user/customer">Customers</a>
                             <span class="separator"></span>
-                            <a href="/user/employee">Employees</a>
+                            <a  href="{{url('/')}}/user/employee">Employees</a>
                             <span class="separator"></span>
-                            <a href="/user/admin">Admins</a>
+                            <a  href="{{url('/')}}/user/admin">Admins</a>
                         </x-slot>
                     </x-nav-link-parent>
 
                     <x-nav-link-parent :href="'#'" :active="request()->is('setting/*')">
                         <x-slot name="name">Settings</x-slot>
                         <x-slot name="children">
-                            <a href="/setting/service">Services</a>
+                            <a  href="{{url('/')}}/setting/service">Services</a>
                             <span class="separator"></span>
-                            <a href="/setting/category">Category Setting</a>
+                            <a  href="{{url('/')}}/setting/category">Category Setting</a>
                             <span class="separator"></span>
-                            <a href="/setting/priority">Priority Setting</a>
+                            <a  href="{{url('/')}}/setting/priority">Priority Setting</a>
                             <span class="separator"></span>
-                            <a href="/setting/organization">Organization Setting</a>
+                            <a  href="{{url('/')}}/setting/organization">Organization Setting</a>
                             <span class="separator"></span>
                             <a href="#">Mail Setting</a>
                         </x-slot>
@@ -116,7 +116,7 @@
                 <x-slot name="name">Tickets</x-slot>
                 <x-slot name="children">
                     @role('customer')
-                    <a href="/ticket/new">Add Ticket</a>
+                    <a  href="{{url('/')}}/ticket/new">Add Ticket</a>
                     <span class="separator"></span>
                     @endrole
                     <a href="#">Opened Tickets</a>
@@ -133,24 +133,24 @@
             <x-nav-link-parent :href="'#'" :active="request()->is('user/*')">
                 <x-slot name="name">Users</x-slot>
                 <x-slot name="children">
-                    <a href="/user/customer">Customers</a>
+                    <a  href="{{url('/')}}/user/customer">Customers</a>
                     <span class="separator"></span>
-                    <a href="/user/employee">Employees</a>
+                    <a  href="{{url('/')}}/user/employee">Employees</a>
                     <span class="separator"></span>
-                    <a href="/user/admin">Admins</a>
+                    <a  href="{{url('/')}}/user/admin">Admins</a>
                 </x-slot>
             </x-nav-link-parent>
 
             <x-nav-link-parent :href="'#'" :active="request()->is('setting/*')">
                 <x-slot name="name">Settings</x-slot>
                 <x-slot name="children">
-                    <a href="/setting/service">Services</a>
+                    <a  href="{{url('/')}}/setting/service">Services</a>
                     <span class="separator"></span>
-                    <a href="/setting/category">Category Setting</a>
+                    <a  href="{{url('/')}}/setting/category">Category Setting</a>
                     <span class="separator"></span>
-                    <a href="/setting/priority">Priority Setting</a>
+                    <a  href="{{url('/')}}/setting/priority">Priority Setting</a>
                     <span class="separator"></span>
-                    <a href="/setting/organization">Organization Setting</a>
+                    <a  href="{{url('/')}}/setting/organization">Organization Setting</a>
                     <span class="separator"></span>
                     <a href="#">Mail Setting</a>
                 </x-slot>

@@ -16,56 +16,18 @@ class InstalltionController extends Controller
     }
 
     public function step1(){
-        return view('install.step1');
-    }
-
-    public function dbConnect(Request $request){
-        if(self::check_database_connection($request->DB_HOST, $request->DB_DATABASE, $request->DB_USERNAME, $request->DB_PASSWORD)) {
-            $path = base_path('.env');
-            if (file_exists($path)) {
-                foreach ($request->types as $type) {
-                     $this->writeEnvironmentFile($type, $request[$type]);
-                }
-                return redirect('/installtion/import-sql');
-            }else {
-                return redirect('step3');
-            }
-        }else {
-            return redirect('step3/database_error');
+        if(DB::connection()->getDatabaseName()){
+            return view('install.import_db');
+        }else{
+            $error = true;
+            return view('install.import_db',compact('error'));
         }
     }
 
-    function check_database_connection($db_host = "", $db_name = "", $db_user = "", $db_pass = "") {
-
-        if(@mysqli_connect($db_host, $db_user, $db_pass, $db_name)) {
-            return true;
-        }else {
-            return false;
-        }
-    }
-
-    public function writeEnvironmentFile($type, $val) {
-        $path = base_path('.env');
-        if (file_exists($path)) {
-            $val = trim($val);
-            file_put_contents($path, str_replace(
-                $type.'='.env($type), 
-                $type.'='.$val, 
-                file_get_contents($path)
-            ));
-        }
-    }
-
-    public function importSql(){
-        return view('install.import_db');
-    }
 
     public function uploadSql(){
         $sql_path = base_path('dticket.sql');
         DB::unprepared(file_get_contents($sql_path));
-        return redirect('/installation/basic-setting');
-    }
-    public function basicSetting(){
-        dd('Alhumdulillah');
+        return redirect('/');
     }
 }

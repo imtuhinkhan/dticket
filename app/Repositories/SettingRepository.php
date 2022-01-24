@@ -19,19 +19,19 @@ class SettingRepository{
         $organization->email = $req->email;
         $organization->footerText = $req->footerText;
         if ($files = $req->file('largeLogo')) {
-             $path = 'images/setting/';
+             $path = 'public/images/setting/';
              $fimage = uniqid() . "." . $files->getClientOriginalExtension();
              $files->move($path, $fimage);
              $organization->largeLogo = $path.$fimage;
         }
         if ($files = $req->file('smallLogo')) {
-            $path = 'images/setting/';
+            $path = 'public/images/setting/';
             $fimage = uniqid() . "." . $files->getClientOriginalExtension();
             $files->move($path, $fimage);
             $organization->smallLogo = $path.$fimage;
         }
        if ($files = $req->file('favicon')) {
-            $path = 'images/setting/';
+            $path = 'public/images/setting/';
             $fimage = uniqid() . "." . $files->getClientOriginalExtension();
             $files->move($path, $fimage);
             $organization->favicon = $path.$fimage;

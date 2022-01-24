@@ -50,7 +50,7 @@
                                 <label for="catName" class="form-label">Photo</label>
                                 <input type="file" class="form-control" id="catName" name="photo">
                                 <p class='info-text'>Suggested Size:300x300 pixels</p>
-                                <img src='/@if(@isset($user)){{$user->userDetails->photo}} @endif' width='80px' style="border: 1px solid;padding: 12px;margin: 5px;"  id="favicon">
+                                <img  src='{{url('/')}}/@if(@isset($user)){{$user->userDetails->photo}} @endif' width='80px' style="border: 1px solid;padding: 12px;margin: 5px;"  id="favicon">
 
                               </div>
                               <input type="hidden" name="type" value="{{$type}}">

@@ -21,7 +21,7 @@
 
                     @foreach ($attributes['theader'] as $item)
                     @if($item=='Photo')
-                    <th><img src='/{{$data['photo']}}' width="50px" /></th>
+                    <th><img  src='{{url('/')}}/{{$data['photo']}}' width="50px" /></th>
 
                     @else
                     <th>{!!$data[strtolower($item)]!!}</th>
@@ -29,9 +29,9 @@
                     @endforeach
 
                     <th>
-                        <a href="/{{$attributes['tag']}}/{{$data['id']}}/edit"><i class="fas fa-pencil" title="Delete" style="color: rgb(233, 145, 14)"></i></a>
+                        <a  href="{{url('/')}}/{{$attributes['tag']}}/{{$data['id']}}/edit"><i class="fas fa-pencil" title="Delete" style="color: rgb(233, 145, 14)"></i></a>
                         @if($data['is_active']==1)
-                        <a onclick="return confirm('Are you sure you want to deactive this item')" href="/{{$attributes['tag']}}/{{$data['id']}}/delete"><i class="fas fa-trash danger show_confirm" data-tag="{{$attributes['tag']}}" data-id={{$data['id']}} style="color: rgb(228, 39, 49);cursor: pointer;" title="deactive"></i></a>
+                        <a onclick="return confirm('Are you sure you want to deactive this item')"  href="{{url('/')}}/{{$attributes['tag']}}/{{$data['id']}}/delete"><i class="fas fa-trash danger show_confirm" data-tag="{{$attributes['tag']}}" data-id={{$data['id']}} style="color: rgb(228, 39, 49);cursor: pointer;" title="deactive"></i></a>
                         @endif
                     </th>
                 </tr>

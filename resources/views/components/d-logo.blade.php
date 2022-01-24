@@ -1,1 +1,1 @@
-<img src="{{$organizationData->largeLogo}}" style="width: 70%; margin: 0 auto"/>
+<img  src="{{url('/')}}/{{$organizationData->largeLogo}}" style="width: 70%; margin: 0 auto"/>

@@ -76,7 +76,7 @@ class UserRepository implements CrudInterface{
             $details->address = $request->address;
             $details->gender = $request->gender;
             if ($files = $request->file('photo')) {
-                $path = 'images/user/';
+                $path = 'public/images/user/';
                 $fimage = uniqid() . "." . $files->getClientOriginalExtension();
                 $files->move($path, $fimage);
                 $details->photo = $path.$fimage;

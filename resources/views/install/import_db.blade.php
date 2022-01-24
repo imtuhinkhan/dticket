@@ -7,7 +7,7 @@
                     <div class="card-body">
                         <div class="mar-ver pad-btm text-center">
                             <h1 class="h3">Database setup</h1>
-                            <p>Fill this form with valid database credentials</p>
+                            <p>Update .env file with valid database credentials</p>
                         </div>
 
                         @if (isset($error))
@@ -26,11 +26,12 @@
                               </div>
                             </div>
                           </div>
-                        @endif
 
                         <p class="text-muted font-13" style="padding: 10px;text-align: center;">
                             <a href="{{url('/')}}/installtion/upload-sql" class="btn btn-success">Import SQL</a>
                         </p>
+                        @endif
+
                     </div>
                 </div>
             </div>

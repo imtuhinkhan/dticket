@@ -27,13 +27,13 @@
                 <td>@if($data->lastReply!=null){{$data->lastReply->name}} @else {{'-'}} @endif</td>
                 <td>
                     @if($data->status==1 || $data->status==2)
-                    <a href="/ticket/{{$data->id}}/changeStatus/3" class="btn btn-success btn-sm act-btn">Close Resolved</a>
-                    <a href="/ticket/{{$data->id}}/changeStatus/4" class="btn btn-warning btn-sm act-btn">Close unsolved</a>
+                    <a  href="{{url('/')}}/ticket/{{$data->id}}/changeStatus/3" class="btn btn-success btn-sm act-btn">Close Resolved</a>
+                    <a  href="{{url('/')}}/ticket/{{$data->id}}/changeStatus/4" class="btn btn-warning btn-sm act-btn">Close unsolved</a>
                     @endif
                     @if($data->status==3 || $data->status==4)
-                    <a href="/ticket/{{$data->id}}/changeStatus/2" class="btn btn-success btn-sm act-btn">Reopen</a>
+                    <a  href="{{url('/')}}/ticket/{{$data->id}}/changeStatus/2" class="btn btn-success btn-sm act-btn">Reopen</a>
                     @endif
-                    <a href="/ticket/{{$data->id}}/details" class="btn btn-primary btn-sm act-btn">Details</a>
+                    <a  href="{{url('/')}}/ticket/{{$data->id}}/details" class="btn btn-primary btn-sm act-btn">Details</a>
                 </td>
             </tr>
         @endforeach

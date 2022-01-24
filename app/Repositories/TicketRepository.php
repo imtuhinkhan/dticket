@@ -76,7 +76,7 @@ class TicketRepository implements TicketInterface{
         $ticket->status = 1;
         $ticket->uniqueId = $this->generateUniqueId();
         if ($files = $req->file('photo')) {
-            $path = 'images/ticket/';
+            $path = 'public/images/ticket/';
             $fimage = uniqid() . "." . $files->getClientOriginalExtension();
             $files->move($path, $fimage);
             $ticket->image = $path.$fimage;
@@ -104,7 +104,7 @@ class TicketRepository implements TicketInterface{
         $reply = new TicketReplay();
         $reply->reply=$req->reply;
         if ($files = $req->file('photo')) {
-            $path = 'images/ticket/';
+            $path = 'public/images/ticket/';
             $fimage = uniqid() . "." . $files->getClientOriginalExtension();
             $files->move($path, $fimage);
             $reply->image = $path.$fimage;
