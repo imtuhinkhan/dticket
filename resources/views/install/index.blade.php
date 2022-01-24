@@ -1,23 +1,70 @@
 @extends('install.layout')
 @section('content')
-    <form action="{{url('/')}}/installtion/step1" method="POST">
-        @csrf
-        <h1>DTICKET INSTALLATION</h1>
-        <h3 style="text-align: center">Database Configuration</h3>
-        <div class="formcontainer">
-        <hr/>
-        <div class="container">
-        <label for="uname"><strong>Database Host</strong></label>
-        <input type="text" placeholder="Enter Database Host" name="dbhost" required>
-        <label for="psw"><strong>Database Name</strong></label>
-        <input type="password" placeholder="Enter Database Name" name="dbname" required>
+<div class="container pt-5">
+        <div class="row">
+            <div class="col-xl-6 mx-auto">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="mar-ver pad-btm text-center">
+                            <h1 class="h3">Checking file permissions</h1>
+                            <p>We ran diagnosis on your server. Review the items that have a red mark on it. <br> If everything is green, you are good to go to the next step.</p>
+                        </div>
 
-        <label for="uname"><strong>Database User</strong></label>
-        <input type="text" placeholder="Enter Database user" name="uname" required>
-        <label for="psw"><strong>Database Password</strong></label>
-        <input type="password" placeholder="Enter Database Password" name="psw" required>
+                        <ul class="list-group">
+                            <li class="list-group-item text-semibold">
+                                Php version 7.2 +
+
+                                @php
+                                    $phpVersion = number_format((float)phpversion(), 2, '.', '');
+                                @endphp
+                                @if ($phpVersion >= 7.20)
+                                    <i class="fa fa-check text-success float-right"></i>
+                                @else
+                                    <i class="fa fa-close text-danger float-right"></i>
+                                @endif
+                            </li>
+                            <li class="list-group-item text-semibold">
+                                Curl Enabled
+
+                                @if ($permission['curl_enabled'])
+                                    <i class="fa fa-check text-success float-right"></i>
+                                @else
+                                    <i class="fa fa-close text-danger float-right"></i>
+                                @endif
+                            </li>
+                            <li class="list-group-item text-semibold">
+                                <b>.env</b> File Permission
+
+                                @if ($permission['db_file_write_perm'])
+                                    <i class="fa fa-check text-success float-right"></i>
+                                @else
+                                    <i class="fa fa-close text-danger float-right"></i>
+                                @endif
+                            </li>
+                            <li class="list-group-item text-semibold">
+                                <b>RouteServiceProvider.php</b> File Permission
+
+                                @if ($permission['routes_file_write_perm'])
+                                    <i class="fa fa-check text-success float-right"></i>
+                                @else
+                                    <i class="fa fa-close text-danger float-right"></i>
+                                @endif
+                            </li>
+                        </ul>
+
+                        <p class="text-center mt-3">
+                            @if ($permission['curl_enabled'] == 1 && $permission['db_file_write_perm'] == 1 && $permission['routes_file_write_perm'] == 1 && $phpVersion >= 7.20)
+                                @if ($_SERVER['SERVER_NAME'] == 'localhost' || $_SERVER['SERVER_NAME'] == '127.0.0.1')
+                                    <a href = "{{url('/')}}/installation/step1" class="btn btn-primary">Go To Next Step</a>
+                                @else
+                                    <a href = "#" class="btn btn-primary">Go To Next Step</a>
+                                @endif
+                            @endif
+                        </p>
+                    </div>
+                </div>
+            </div>
         </div>
-        <button type="submit">Next</button>
-    </form>   
+    </div>
 @endsection
     
