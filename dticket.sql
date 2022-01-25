@@ -2,10 +2,10 @@
 -- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Jan 24, 2022 at 06:57 AM
--- Server version: 10.4.22-MariaDB
--- PHP Version: 8.1.1
+-- Host: localhost:8889
+-- Generation Time: Jan 25, 2022 at 04:15 PM
+-- Server version: 5.7.34
+-- PHP Version: 8.0.8
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `dticket`
+-- Database: `dticket_local`
 --
 
 -- --------------------------------------------------------
@@ -57,7 +57,7 @@ CREATE TABLE `failed_jobs` (
   `queue` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
   `exception` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `failed_at` timestamp NOT NULL DEFAULT current_timestamp()
+  `failed_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -137,8 +137,8 @@ CREATE TABLE `model_has_roles` (
 
 INSERT INTO `model_has_roles` (`role_id`, `model_type`, `model_id`) VALUES
 (1, 'App\\Models\\User', 1),
-(1, 'web', 1),
-(2, 'App\\Models\\User', 2);
+(2, 'App\\Models\\User', 2),
+(3, 'App\\Models\\User', 3);
 
 -- --------------------------------------------------------
 
@@ -178,7 +178,7 @@ CREATE TABLE `personal_access_tokens` (
   `tokenable_id` bigint(20) UNSIGNED NOT NULL,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `token` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `abilities` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `abilities` text COLLATE utf8mb4_unicode_ci,
   `last_used_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -284,7 +284,7 @@ CREATE TABLE `settings` (
 --
 
 INSERT INTO `settings` (`id`, `companyName`, `email`, `footerText`, `largeLogo`, `smallLogo`, `favicon`, `created_at`, `updated_at`) VALUES
-(1, 'D Ticket', 'ticket@dtheme.com', 'dtheme@2022', 'images/setting/61e5046c78402.png', 'images/setting/61e5052556d81.png', 'images/setting/61e5052556fbb.png', NULL, '2022-01-16 23:56:53');
+(1, 'D Ticket', 'ticket@dtheme.com', 'dtheme@2022', 'public/images/setting/61eef6a385bfd.png', 'public/images/setting/61eef6a3860e2.png', 'public/images/setting/61eef6a386229.png', NULL, '2022-01-24 12:57:39');
 
 -- --------------------------------------------------------
 
@@ -297,7 +297,7 @@ CREATE TABLE `tickets` (
   `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `uniqueId` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `description` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `image` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `image` text COLLATE utf8mb4_unicode_ci,
   `service_id` bigint(20) UNSIGNED NOT NULL,
   `category_id` bigint(20) UNSIGNED NOT NULL,
   `priority_id` bigint(20) UNSIGNED NOT NULL,
@@ -308,17 +308,6 @@ CREATE TABLE `tickets` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Dumping data for table `tickets`
---
-
-INSERT INTO `tickets` (`id`, `title`, `uniqueId`, `description`, `image`, `service_id`, `category_id`, `priority_id`, `customer_id`, `last_replay_by`, `status`, `created_at`, `updated_at`) VALUES
-(1, 'test', '61e685a7af2e4', 'stgsds', NULL, 1, 1, 1, 2, 0, 1, '2022-01-18 03:17:27', '2022-01-18 03:17:27'),
-(2, 'xcvn', '61e685ff9c540', 'xcbxcvxc', 'images/ticket/61e685ff9c548.jpg', 1, 1, 1, 2, 1, 2, '2022-01-18 03:18:55', '2022-01-18 21:57:08'),
-(3, 'asdas', '61e68639a02c2', 'asdas', 'images/ticket/61e68639a02cb.JPEG', 1, 1, 1, 2, 0, 3, '2022-01-18 03:19:53', '2022-01-18 03:19:53'),
-(4, 'asdas', '1-3', 'asdas', 'images/ticket/61e68977699ea.JPEG', 1, 1, 1, 2, 0, 4, '2022-01-18 03:33:43', '2022-01-19 02:20:03'),
-(5, 'asdas', 'Bill-4', 'asdas', 'images/ticket/61e68a3cf299e.JPEG', 1, 1, 1, 2, 0, 4, '2022-01-18 03:37:00', '2022-01-19 02:20:06');
-
 -- --------------------------------------------------------
 
 --
@@ -328,25 +317,12 @@ INSERT INTO `tickets` (`id`, `title`, `uniqueId`, `description`, `image`, `servi
 CREATE TABLE `ticket_replies` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `reply` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `image` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `image` text COLLATE utf8mb4_unicode_ci,
   `ticket_id` bigint(20) UNSIGNED NOT NULL,
   `user_id` bigint(20) UNSIGNED NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `ticket_replies`
---
-
-INSERT INTO `ticket_replies` (`id`, `reply`, `image`, `ticket_id`, `user_id`, `created_at`, `updated_at`) VALUES
-(1, 'hffghfgh', NULL, 2, 1, '2022-01-18 21:57:08', '2022-01-18 21:57:08'),
-(2, 'Another reply test', NULL, 2, 1, '2022-01-18 22:46:38', '2022-01-18 22:46:38'),
-(3, 'asfdas', NULL, 2, 1, '2022-01-18 23:02:34', '2022-01-18 23:02:34'),
-(4, 'sgdsdg', 'images/ticket/61e7a502be25b.jpg', 2, 1, '2022-01-18 23:43:30', '2022-01-18 23:43:30'),
-(5, 'sdvsdvs', NULL, 2, 1, '2022-01-19 00:10:46', '2022-01-19 00:10:46'),
-(6, 'sdfvsdvs', NULL, 2, 1, '2022-01-19 00:10:50', '2022-01-19 00:10:50'),
-(7, 'sdvsvsdv', NULL, 2, 1, '2022-01-19 00:10:56', '2022-01-19 00:10:56');
 
 -- --------------------------------------------------------
 
@@ -360,7 +336,7 @@ CREATE TABLE `users` (
   `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email_verified_at` timestamp NULL DEFAULT NULL,
   `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `is_active` tinyint(1) NOT NULL DEFAULT 1,
+  `is_active` tinyint(1) NOT NULL DEFAULT '1',
   `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -371,8 +347,9 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `is_active`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Tuhin', 'uiu.tuhin@gmail.com', NULL, '$2y$10$jysRaQ5GpgrC073dOZdR2OtvE6di7r0mdD1masTYvTparB/t/vPZG', 1, NULL, '2022-01-14 02:33:56', '2022-01-17 20:43:27'),
-(2, 'Customer', 'customer@gmail.com', NULL, '$2y$10$cvaHMv/x2G0d4OE4CYcSnug2f222KHOxdruxj5z8Qd.7lraPvTBzq', 1, NULL, '2022-01-18 00:36:40', '2022-01-18 00:45:31');
+(1, 'Admin', 'admin@duaait.com', NULL, '$2y$10$jysRaQ5GpgrC073dOZdR2OtvE6di7r0mdD1masTYvTparB/t/vPZG', 1, NULL, '2022-01-14 02:33:56', '2022-01-25 10:13:00'),
+(2, 'Customer', 'customer@duaait.com', NULL, '$2y$10$cvaHMv/x2G0d4OE4CYcSnug2f222KHOxdruxj5z8Qd.7lraPvTBzq', 1, NULL, '2022-01-18 00:36:40', '2022-01-18 00:45:31'),
+(3, 'employee', 'employee@duaait.com', NULL, '$2y$10$cvaHMv/x2G0d4OE4CYcSnug2f222KHOxdruxj5z8Qd.7lraPvTBzq', 1, NULL, '2022-01-18 00:36:40', '2022-01-18 00:45:31');
 
 -- --------------------------------------------------------
 
@@ -383,8 +360,8 @@ INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `is
 CREATE TABLE `user_details` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `phoneNumber` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `photo` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `address` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `photo` text COLLATE utf8mb4_unicode_ci,
+  `address` text COLLATE utf8mb4_unicode_ci,
   `gender` tinyint(4) NOT NULL,
   `user_id` bigint(20) UNSIGNED NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -396,8 +373,9 @@ CREATE TABLE `user_details` (
 --
 
 INSERT INTO `user_details` (`id`, `phoneNumber`, `photo`, `address`, `gender`, `user_id`, `created_at`, `updated_at`) VALUES
-(1, '+8801717402382', 'images/user/61e79ae9e351b.jpg', 'House 7, Road 4, Gulshan 1', 1, 1, NULL, '2022-01-18 23:00:25'),
-(2, '+8801717402382', 'images/user/61e65ff874736.jpg', 'House 7, Road 4, Gulshan 1', 1, 2, '2022-01-18 00:36:40', '2022-01-18 00:36:40');
+(1, '+1111111', 'public/images/user/61f0214be0daf.jpeg', 'Dhaka, Bangladesh', 1, 1, NULL, '2022-01-25 10:12:49'),
+(2, '+1111111', 'public/images/user/61f0214be0daf.jpeg', 'Dhaka, Bangladesh', 1, 2, '2022-01-18 00:36:40', '2022-01-24 13:08:15'),
+(3, '+1111111', 'public/images/user/61f0214be0daf.jpeg', 'Dhaka, Bangladesh', 1, 3, NULL, '2022-01-25 10:12:49');
 
 --
 -- Indexes for dumped tables
@@ -590,25 +568,25 @@ ALTER TABLE `settings`
 -- AUTO_INCREMENT for table `tickets`
 --
 ALTER TABLE `tickets`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `ticket_replies`
 --
 ALTER TABLE `ticket_replies`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `user_details`
 --
 ALTER TABLE `user_details`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Constraints for dumped tables

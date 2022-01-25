@@ -54,12 +54,8 @@
 
                         <p class="text-center mt-3">
                             @if ($permission['curl_enabled'] == 1 && $permission['db_file_write_perm'] == 1 && $permission['routes_file_write_perm'] == 1 && $phpVersion >= 7.20)
-                                @if ($_SERVER['SERVER_NAME'] == 'localhost' || $_SERVER['SERVER_NAME'] == '127.0.0.1')
                                     <a href = "{{url('/')}}/installation/step1" class="btn btn-primary">Go To Next Step</a>
-                                @else
-                                    <a href = "#" class="btn btn-primary">Go To Next Step</a>
-                                @endif
-                            @endif
+                             @endif
                         </p>
                     </div>
                 </div>
