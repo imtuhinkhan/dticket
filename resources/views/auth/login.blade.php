@@ -1,4 +1,14 @@
 <x-guest-layout>
+    <style>
+
+.cre{
+  padding: 11px;
+  background: rgb(59 130 246 / 50%);
+  border-radius: 10px;
+  margin-bottom: 25px;
+  margin-top: 10px;
+}
+    </style>
     <x-auth-card>
         <x-slot name="logo">
             <a href="/">
@@ -50,7 +60,20 @@
                 <x-button class="ml-3">
                     {{ __('Log in') }}
                 </x-button>
+                
             </div>
         </form>
+        <div class="cre">
+            <p>Admin: admin@duaait.com</p>
+            <p>Password: 123456</p>
+        </div>
+        <div class="cre">
+            <p>Employee: employee@duaait.com </p>
+            <p>Password: 123456</p>
+        </div>
+        <div class="cre">
+            <p>Customer: customer@duaait.com </p>
+            <p>Password: 123456</p>
+        </div>
     </x-auth-card>
 </x-guest-layout>

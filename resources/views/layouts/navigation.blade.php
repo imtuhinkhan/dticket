@@ -55,8 +55,6 @@
                             <a  href="{{url('/')}}/setting/priority">Priority Setting</a>
                             <span class="separator"></span>
                             <a  href="{{url('/')}}/setting/organization">Organization Setting</a>
-                            <span class="separator"></span>
-                            <a href="#">Mail Setting</a>
                         </x-slot>
                     </x-nav-link-parent>
                     @endhasrole
@@ -151,8 +149,6 @@
                     <a  href="{{url('/')}}/setting/priority">Priority Setting</a>
                     <span class="separator"></span>
                     <a  href="{{url('/')}}/setting/organization">Organization Setting</a>
-                    <span class="separator"></span>
-                    <a href="#">Mail Setting</a>
                 </x-slot>
             </x-nav-link-parent>
             @endhasrole
